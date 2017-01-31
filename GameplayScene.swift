@@ -37,11 +37,13 @@ class GameplayScene: SKScene {
     private var maxSpeed = CGFloat();
     
     
+    
     override func didMove(to view: SKView) {
         initialize();
     }
     
     func initialize() {
+        
         createBackgrounds();
         setCameraSpeed();
         
@@ -51,18 +53,30 @@ class GameplayScene: SKScene {
     func createBackgrounds() {
         
         skyNode=self.childNode(withName: "Background1") as! BackgroundClass?;
-        skyNodeNext=self.childNode(withName: "Background1Next") as! BackgroundClass?;
+        skyNodeNext=self.childNode(withName: "Background1Next") as?  BackgroundClass;
         
         distantLeavesNode=self.childNode(withName: "Background2") as! BackgroundClass?;
         distantLeavesNodeNext=self.childNode(withName: "Background2Next") as! BackgroundClass?;
         
         nearbyLeavesNode=self.childNode(withName: "Background3") as! BackgroundClass?;
         nearbyLeavesNodeNext=self.childNode(withName: "Background3Next") as! BackgroundClass?;
-
-
+        
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
+        if lastFrameTime <= 0 {
+            lastFrameTime = currentTime
+        }
+        
+        // Update delta time
+        deltaTime = currentTime - lastFrameTime
+        
+        // Set last frame time to current time
+        lastFrameTime = currentTime
+        
+        
         moveCamera();
         manageBackgrounds();
         
@@ -81,33 +95,34 @@ class GameplayScene: SKScene {
     }
     
     func manageBackgrounds () {
-        skyNode?.moveSprite(nextSprite: skyNodeNext!, speed: 10, deltaTime: deltaTime);
-        distantLeavesNode?.moveSprite(nextSprite: distantLeavesNodeNext!, speed: 20, deltaTime: deltaTime);
-        nearbyLeavesNode?.moveSprite(nextSprite: nearbyLeavesNodeNext!, speed: 30, deltaTime: deltaTime);
-
-        //skyNodeNext?.moveBG(camera: mainCamera!, speed: 10);
-        //distantLeavesNodeNext?.moveBG(camera: mainCamera!, speed: 20);
-        //nearbyLeavesNodeNext?.moveBG(camera: mainCamera!, speed: 30);
+        
+        skyNode?.moveSprite(speed: 25.0, deltaTime: deltaTime);
+        distantLeavesNode?.moveSprite( speed: 100, deltaTime: deltaTime);
+        nearbyLeavesNode?.moveSprite( speed: 150, deltaTime: deltaTime);
+        
+        skyNodeNext?.moveSprite(speed: 25.0, deltaTime: deltaTime);
+        distantLeavesNodeNext?.moveSprite(speed: 100.0, deltaTime: deltaTime);
+        nearbyLeavesNodeNext?.moveSprite(speed: 150.0, deltaTime: deltaTime);
     }
     
     private func setCameraSpeed() {
         /*if GameManager.instance.getEasyDifficulty() {
-            acceleration = 0.001;
-            cameraSpeed = 1.5;
-            maxSpeed = 4;
-        } else if GameManager.instance.getMediumDifficulty() {
-            acceleration = 0.002;
-            cameraSpeed = 2.0;
-            maxSpeed = 6;
-        } else if GameManager.instance.getHardDifficulty() {
-            acceleration = 0.003;
-            cameraSpeed = 2.5;
-            maxSpeed = 8;
-        }*/
+         acceleration = 0.001;
+         cameraSpeed = 1.5;
+         maxSpeed = 4;
+         } else if GameManager.instance.getMediumDifficulty() {
+         acceleration = 0.002;
+         cameraSpeed = 2.0;
+         maxSpeed = 6;
+         } else if GameManager.instance.getHardDifficulty() {
+         acceleration = 0.003;
+         cameraSpeed = 2.5;
+         maxSpeed = 8;
+         }*/
         
         acceleration = 0.001;
         cameraSpeed = 1.5;
         maxSpeed = 4;
     }
-
+    
 }
