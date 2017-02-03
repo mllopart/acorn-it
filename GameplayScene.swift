@@ -52,19 +52,65 @@ class GameplayScene: SKScene {
     
     func createBackgrounds() {
         
-        skyNode=self.childNode(withName: "Background1") as! BackgroundClass?;
-        skyNodeNext=self.childNode(withName: "Background1Next") as?  BackgroundClass;
+        let backgroundTexture = SKTexture(imageNamed: "game_background1")
+        let backgroundTexture1 = SKTexture(imageNamed: "game_background2")
+        let backgroundTexture2 = SKTexture(imageNamed: "game_background3")
         
-        distantLeavesNode=self.childNode(withName: "Background2") as! BackgroundClass?;
-        distantLeavesNodeNext=self.childNode(withName: "Background2Next") as! BackgroundClass?;
-        
-        nearbyLeavesNode=self.childNode(withName: "Background3") as! BackgroundClass?;
-        nearbyLeavesNodeNext=self.childNode(withName: "Background3Next") as! BackgroundClass?;
-        
+        for i in 0 ... 1 {
+            let background = BackgroundClass(texture: backgroundTexture)
+            let background1 = BackgroundClass(texture: backgroundTexture1)
+            let background2 = BackgroundClass(texture: backgroundTexture2)
+            
+            background.zPosition = -30
+            background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            background.position = CGPoint(x: 0, y: 0)
+            background.xScale = 1;
+            background.yScale = 1;
+            background.position = CGPoint(x: 0, y: backgroundTexture.size().height * -CGFloat(i))
+            
+            background1.zPosition = -20
+            background1.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            background1.position = CGPoint(x: 0, y: 0)
+            background1.xScale = 1;
+            background1.yScale = 1;
+            background1.position = CGPoint(x: 0, y: backgroundTexture1.size().height * -CGFloat(i))
+            
+            background2.zPosition = -10
+            background2.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            background2.position = CGPoint(x: 0, y: 0)
+            background2.xScale = 1;
+            background2.yScale = 1;
+            background2.position = CGPoint(x: 0, y: backgroundTexture2.size().height * -CGFloat(i))
+            
+            addChild(background)
+            addChild(background1)
+            addChild(background2)
+            
+            let moveUp = SKAction.moveBy(x: 0, y: backgroundTexture.size().height, duration: 20)
+            let moveReset = SKAction.moveBy(x: 0, y: -backgroundTexture.size().height, duration: 0)
+            let moveLoop = SKAction.sequence([moveUp, moveReset])
+            let moveForever = SKAction.repeatForever(moveLoop)
+            
+            let moveUp1 = SKAction.moveBy(x: 0, y: backgroundTexture1.size().height, duration: 10)
+            let moveReset1 = SKAction.moveBy(x: 0, y: -backgroundTexture1.size().height, duration: 0)
+            let moveLoop1 = SKAction.sequence([moveUp1, moveReset1])
+            let moveForever1 = SKAction.repeatForever(moveLoop1)
+            
+            let moveUp2 = SKAction.moveBy(x: 0, y: backgroundTexture2.size().height, duration: 5)
+            let moveReset2 = SKAction.moveBy(x: 0, y: -backgroundTexture2.size().height, duration: 0)
+            let moveLoop2 = SKAction.sequence([moveUp2, moveReset2])
+            let moveForever2 = SKAction.repeatForever(moveLoop2)
+
+          
+            background.run(moveForever)
+            background1.run(moveForever1)
+            background2.run(moveForever2)
+        }
         
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
         
         if lastFrameTime <= 0 {
             lastFrameTime = currentTime
@@ -76,9 +122,7 @@ class GameplayScene: SKScene {
         // Set last frame time to current time
         lastFrameTime = currentTime
         
-        
         moveCamera();
-        manageBackgrounds();
         
     }
     
@@ -90,19 +134,8 @@ class GameplayScene: SKScene {
             cameraSpeed = maxSpeed;
         }
         
-        self.mainCamera?.position.y -= cameraSpeed;
+        //self.mainCamera?.position.y -= cameraSpeed;
         
-    }
-    
-    func manageBackgrounds () {
-        
-        skyNode?.moveSprite(speed: 25.0, deltaTime: deltaTime);
-        distantLeavesNode?.moveSprite( speed: 100, deltaTime: deltaTime);
-        nearbyLeavesNode?.moveSprite( speed: 150, deltaTime: deltaTime);
-        
-        skyNodeNext?.moveSprite(speed: 25.0, deltaTime: deltaTime);
-        distantLeavesNodeNext?.moveSprite(speed: 100.0, deltaTime: deltaTime);
-        nearbyLeavesNodeNext?.moveSprite(speed: 150.0, deltaTime: deltaTime);
     }
     
     private func setCameraSpeed() {
