@@ -32,6 +32,12 @@ class GameplayScene: SKScene {
     // Time since last frame
     var deltaTime : TimeInterval = 0
     
+    var player: Player?;
+    
+    var center: CGFloat?;
+    var canMove = false;
+    var moveLeft = false;
+    
     private var acceleration = CGFloat();
     private var cameraSpeed = CGFloat();
     private var maxSpeed = CGFloat();
@@ -40,14 +46,20 @@ class GameplayScene: SKScene {
     
     override func didMove(to view: SKView) {
         initialize();
+        
+        
     }
     
-    func initialize() {
-        
-        createBackgrounds();
-        setCameraSpeed();
+    func initialize() {      
         
         mainCamera = self.childNode(withName: "MainCamera") as! SKCameraNode?;
+        center = (self.scene?.size.width)! / (self.scene?.scene?.size.height)!;
+        player = self.childNode(withName: "Player") as? Player!;
+        
+        createBackgrounds();
+        player?.initializePlayerAndAnimations();
+        setCameraSpeed();
+        
     }
     
     func createBackgrounds() {
@@ -56,56 +68,58 @@ class GameplayScene: SKScene {
         let backgroundTexture1 = SKTexture(imageNamed: "game_background2")
         let backgroundTexture2 = SKTexture(imageNamed: "game_background3")
         
-        for i in 0 ... 1 {
-            let background = BackgroundClass(texture: backgroundTexture)
-            let background1 = BackgroundClass(texture: backgroundTexture1)
-            let background2 = BackgroundClass(texture: backgroundTexture2)
+        skyNode = BackgroundClass(texture: backgroundTexture);
+        skyNodeNext = BackgroundClass(texture: backgroundTexture);
+        
+        distantLeavesNode = BackgroundClass(texture: backgroundTexture1);
+        distantLeavesNodeNext = BackgroundClass(texture: backgroundTexture1);
+        
+        nearbyLeavesNode = BackgroundClass(texture: backgroundTexture2);
+        nearbyLeavesNodeNext = BackgroundClass(texture: backgroundTexture2);
+        
+        
+        for background in [skyNode, skyNodeNext] {
             
-            background.zPosition = -30
-            background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            background.position = CGPoint(x: 0, y: 0)
-            background.xScale = 1;
-            background.yScale = 1;
-            background.position = CGPoint(x: 0, y: backgroundTexture.size().height * -CGFloat(i))
-            
-            background1.zPosition = -20
-            background1.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            background1.position = CGPoint(x: 0, y: 0)
-            background1.xScale = 1;
-            background1.yScale = 1;
-            background1.position = CGPoint(x: 0, y: backgroundTexture1.size().height * -CGFloat(i))
-            
-            background2.zPosition = -10
-            background2.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            background2.position = CGPoint(x: 0, y: 0)
-            background2.xScale = 1;
-            background2.yScale = 1;
-            background2.position = CGPoint(x: 0, y: backgroundTexture2.size().height * -CGFloat(i))
-            
-            addChild(background)
-            addChild(background1)
-            addChild(background2)
-            
-            let moveUp = SKAction.moveBy(x: 0, y: backgroundTexture.size().height, duration: 20)
-            let moveReset = SKAction.moveBy(x: 0, y: -backgroundTexture.size().height, duration: 0)
-            let moveLoop = SKAction.sequence([moveUp, moveReset])
-            let moveForever = SKAction.repeatForever(moveLoop)
-            
-            let moveUp1 = SKAction.moveBy(x: 0, y: backgroundTexture1.size().height, duration: 10)
-            let moveReset1 = SKAction.moveBy(x: 0, y: -backgroundTexture1.size().height, duration: 0)
-            let moveLoop1 = SKAction.sequence([moveUp1, moveReset1])
-            let moveForever1 = SKAction.repeatForever(moveLoop1)
-            
-            let moveUp2 = SKAction.moveBy(x: 0, y: backgroundTexture2.size().height, duration: 5)
-            let moveReset2 = SKAction.moveBy(x: 0, y: -backgroundTexture2.size().height, duration: 0)
-            let moveLoop2 = SKAction.sequence([moveUp2, moveReset2])
-            let moveForever2 = SKAction.repeatForever(moveLoop2)
-
-          
-            background.run(moveForever)
-            background1.run(moveForever1)
-            background2.run(moveForever2)
+            background?.zPosition = -30
+            background?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            background?.position = CGPoint(x: 0, y: 0)
+            background?.xScale = 1;
+            background?.yScale = 1;
         }
+        
+        for background in [distantLeavesNode, distantLeavesNodeNext] {
+            
+            background?.zPosition = -20
+            background?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            background?.position = CGPoint(x: 0, y: 0)
+            background?.xScale = 1;
+            background?.yScale = 1;
+        }
+        
+        for background in [nearbyLeavesNode, nearbyLeavesNodeNext] {
+            
+            background?.zPosition = -10
+            background?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            background?.position = CGPoint(x: 0, y: 0)
+            background?.xScale = 1;
+            background?.yScale = 1;
+        }
+        
+        skyNode?.position = CGPoint(x: 0, y: 0);
+        skyNodeNext?.position = CGPoint(x: 0, y: backgroundTexture.size().height * -1);
+        
+        distantLeavesNode?.position = CGPoint(x: 0, y: 0);
+        distantLeavesNodeNext?.position = CGPoint(x: 0, y: backgroundTexture1.size().height * -1);
+        
+        nearbyLeavesNode?.position = CGPoint(x: 0, y: 0);
+        nearbyLeavesNodeNext?.position = CGPoint(x: 0, y: backgroundTexture2.size().height * -1);
+        
+        addChild(skyNode!);
+        addChild(skyNodeNext!);
+        addChild(distantLeavesNode!);
+        addChild(distantLeavesNodeNext!);
+        addChild(nearbyLeavesNode!);
+        addChild(nearbyLeavesNodeNext!);
         
     }
     
@@ -123,6 +137,7 @@ class GameplayScene: SKScene {
         lastFrameTime = currentTime
         
         moveCamera();
+        managePlayer();
         
     }
     
@@ -135,6 +150,17 @@ class GameplayScene: SKScene {
         }
         
         //self.mainCamera?.position.y -= cameraSpeed;
+        
+        //skyNode?.moveSprite2(nextSprite: skyNodeNext!, speed: 100, deltaTime: deltaTime, camera: self.mainCamera!);
+        skyNode?.moveBG(camera: self.mainCamera!, speed: 20, deltaTime: deltaTime);
+        skyNodeNext?.moveBG(camera: self.mainCamera!, speed: 20, deltaTime: deltaTime);
+        
+        distantLeavesNode?.moveBG(camera: self.mainCamera!, speed: 50, deltaTime: deltaTime);
+        distantLeavesNodeNext?.moveBG(camera: self.mainCamera!, speed: 50, deltaTime: deltaTime);
+        
+        nearbyLeavesNode?.moveBG(camera: self.mainCamera!, speed: 100, deltaTime: deltaTime);
+        nearbyLeavesNodeNext?.moveBG(camera: self.mainCamera!, speed: 100, deltaTime: deltaTime);
+        
         
     }
     
@@ -156,6 +182,10 @@ class GameplayScene: SKScene {
         acceleration = 0.001;
         cameraSpeed = 1.5;
         maxSpeed = 4;
+    }
+    
+    func managePlayer() {
+        //player?.animatePlayer(moveLeft: moveLeft);
     }
     
 }

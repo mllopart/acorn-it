@@ -10,8 +10,10 @@ import SpriteKit
 
 class BackgroundClass: SKSpriteNode {
     
-    func moveBG(camera: SKCameraNode, speed: Float) {
-        if self.position.y - self.size.height - 10 > camera.position.y {
+    func moveBG(camera: SKCameraNode, speed: Float, deltaTime: TimeInterval) {
+        
+        self.position.y += CGFloat(speed * Float(deltaTime))
+        if self.position.y - self.size.height  > camera.position.y {
             self.position.y -= self.size.height * 2;
         }
         
