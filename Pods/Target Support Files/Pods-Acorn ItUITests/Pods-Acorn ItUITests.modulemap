@@ -1,0 +1,6 @@
+framework module Pods_Acorn_ItUITests {
+  umbrella header "Pods-Acorn ItUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

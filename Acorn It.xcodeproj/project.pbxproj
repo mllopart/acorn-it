@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09C19A5B45D2AE8FE3D4284F /* Pods_Acorn_ItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F6CCD3DEFACB78D3767663 /* Pods_Acorn_ItTests.framework */; };
+		4A81D499CA26C9E2B4E38BA9 /* Pods_Acorn_ItUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27ADBE9A1852E123333818CF /* Pods_Acorn_ItUITests.framework */; };
 		6A2F6A621E3ECCC60041A180 /* BackgroundClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A2F6A611E3ECCC60041A180 /* BackgroundClass.swift */; };
 		6A8C4A0F1E4947B1007EC673 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8C4A0E1E4947B1007EC673 /* Player.swift */; };
+		6A8C4A111E4CB7EB007EC673 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A8C4A101E4CB7EB007EC673 /* GoogleService-Info.plist */; };
 		6AA54B901E3D596400E53CA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA54B8F1E3D596400E53CA2 /* AppDelegate.swift */; };
 		6AA54B941E3D596400E53CA2 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6AA54B931E3D596400E53CA2 /* Actions.sks */; };
 		6AA54B981E3D596400E53CA2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA54B971E3D596400E53CA2 /* GameViewController.swift */; };
@@ -22,6 +25,7 @@
 		6AE020481E3EBF0900F02FB7 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE020451E3EBF0900F02FB7 /* GameData.swift */; };
 		6AE020491E3EBF0900F02FB7 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE020461E3EBF0900F02FB7 /* GameManager.swift */; };
 		6AE0204A1E3EBF0900F02FB7 /* GameplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE020471E3EBF0900F02FB7 /* GameplayController.swift */; };
+		FE31AE48E3620ED3937136DB /* Pods_Acorn_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C731CD85D21B31201F606930 /* Pods_Acorn_It.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27ADBE9A1852E123333818CF /* Pods_Acorn_ItUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Acorn_ItUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F8772AC7EB9F122A930C14D /* Pods-Acorn ItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acorn ItUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Acorn ItUITests/Pods-Acorn ItUITests.release.xcconfig"; sourceTree = "<group>"; };
+		609019D6788726F6ADFFBF13 /* Pods-Acorn ItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acorn ItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Acorn ItTests/Pods-Acorn ItTests.release.xcconfig"; sourceTree = "<group>"; };
 		6A2F6A611E3ECCC60041A180 /* BackgroundClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundClass.swift; sourceTree = "<group>"; };
 		6A8C4A0E1E4947B1007EC673 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		6A8C4A101E4CB7EB007EC673 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6AA54B8C1E3D596400E53CA2 /* Acorn It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Acorn It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AA54B8F1E3D596400E53CA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AA54B931E3D596400E53CA2 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -63,6 +71,12 @@
 		6AE020451E3EBF0900F02FB7 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		6AE020461E3EBF0900F02FB7 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		6AE020471E3EBF0900F02FB7 /* GameplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayController.swift; sourceTree = "<group>"; };
+		81F6CCD3DEFACB78D3767663 /* Pods_Acorn_ItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Acorn_ItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8579F969D1034037CAC9AA87 /* Pods-Acorn ItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acorn ItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Acorn ItTests/Pods-Acorn ItTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F383A43D1F1390700C65B33 /* Pods-Acorn It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acorn It.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Acorn It/Pods-Acorn It.debug.xcconfig"; sourceTree = "<group>"; };
+		9CDA05B76D761CBEC5E71FE1 /* Pods-Acorn ItUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acorn ItUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Acorn ItUITests/Pods-Acorn ItUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C731CD85D21B31201F606930 /* Pods_Acorn_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Acorn_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D997C622FFFE38F79E1E5675 /* Pods-Acorn It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Acorn It.release.xcconfig"; path = "Pods/Target Support Files/Pods-Acorn It/Pods-Acorn It.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE31AE48E3620ED3937136DB /* Pods_Acorn_It.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C19A5B45D2AE8FE3D4284F /* Pods_Acorn_ItTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,12 +100,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A81D499CA26C9E2B4E38BA9 /* Pods_Acorn_ItUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0DE7DC4FD8A142D92C5355FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C731CD85D21B31201F606930 /* Pods_Acorn_It.framework */,
+				81F6CCD3DEFACB78D3767663 /* Pods_Acorn_ItTests.framework */,
+				27ADBE9A1852E123333818CF /* Pods_Acorn_ItUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6A8C4A0D1E49479B007EC673 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +135,8 @@
 				6AA54BA91E3D596400E53CA2 /* Acorn ItTests */,
 				6AA54BB41E3D596400E53CA2 /* Acorn ItUITests */,
 				6AA54B8D1E3D596400E53CA2 /* Products */,
+				F01230ACE197BB5842175ABB /* Pods */,
+				0DE7DC4FD8A142D92C5355FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +160,7 @@
 				6AA54B9C1E3D596400E53CA2 /* Assets.xcassets */,
 				6AA54B9E1E3D596400E53CA2 /* LaunchScreen.storyboard */,
 				6AA54BA11E3D596400E53CA2 /* Info.plist */,
+				6A8C4A101E4CB7EB007EC673 /* GoogleService-Info.plist */,
 			);
 			path = "Acorn It";
 			sourceTree = "<group>";
@@ -206,6 +236,19 @@
 			name = "Game Controller";
 			sourceTree = "<group>";
 		};
+		F01230ACE197BB5842175ABB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F383A43D1F1390700C65B33 /* Pods-Acorn It.debug.xcconfig */,
+				D997C622FFFE38F79E1E5675 /* Pods-Acorn It.release.xcconfig */,
+				8579F969D1034037CAC9AA87 /* Pods-Acorn ItTests.debug.xcconfig */,
+				609019D6788726F6ADFFBF13 /* Pods-Acorn ItTests.release.xcconfig */,
+				9CDA05B76D761CBEC5E71FE1 /* Pods-Acorn ItUITests.debug.xcconfig */,
+				3F8772AC7EB9F122A930C14D /* Pods-Acorn ItUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,9 +256,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AA54BBA1E3D596400E53CA2 /* Build configuration list for PBXNativeTarget "Acorn It" */;
 			buildPhases = (
+				B8AB0CA56C955F1FA83D30F0 /* [CP] Check Pods Manifest.lock */,
 				6AA54B881E3D596300E53CA2 /* Sources */,
 				6AA54B891E3D596300E53CA2 /* Frameworks */,
 				6AA54B8A1E3D596300E53CA2 /* Resources */,
+				F8B840DCC2800B33E70F0A5C /* [CP] Embed Pods Frameworks */,
+				5DE049FB8A1DEE828D179602 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,9 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AA54BBD1E3D596400E53CA2 /* Build configuration list for PBXNativeTarget "Acorn ItTests" */;
 			buildPhases = (
+				2D67F32BF4D60B3FCB12534D /* [CP] Check Pods Manifest.lock */,
 				6AA54BA21E3D596400E53CA2 /* Sources */,
 				6AA54BA31E3D596400E53CA2 /* Frameworks */,
 				6AA54BA41E3D596400E53CA2 /* Resources */,
+				7016BA2EB0C64A7D0A4E3DFC /* [CP] Embed Pods Frameworks */,
+				7B3AF13C7968BC89EE276593 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,9 +297,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AA54BC01E3D596400E53CA2 /* Build configuration list for PBXNativeTarget "Acorn ItUITests" */;
 			buildPhases = (
+				A765D21D62113D10B8C73F85 /* [CP] Check Pods Manifest.lock */,
 				6AA54BAD1E3D596400E53CA2 /* Sources */,
 				6AA54BAE1E3D596400E53CA2 /* Frameworks */,
 				6AA54BAF1E3D596400E53CA2 /* Resources */,
+				DB6529B2B554DA6A6D82CBA9 /* [CP] Embed Pods Frameworks */,
+				EBBCE5C8254D744225BE766E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,6 +373,7 @@
 				6AA54B9D1E3D596400E53CA2 /* Assets.xcassets in Resources */,
 				6AA54BA01E3D596400E53CA2 /* LaunchScreen.storyboard in Resources */,
 				6AA54B941E3D596400E53CA2 /* Actions.sks in Resources */,
+				6A8C4A111E4CB7EB007EC673 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +392,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D67F32BF4D60B3FCB12534D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5DE049FB8A1DEE828D179602 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Acorn It/Pods-Acorn It-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7016BA2EB0C64A7D0A4E3DFC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Acorn ItTests/Pods-Acorn ItTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B3AF13C7968BC89EE276593 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Acorn ItTests/Pods-Acorn ItTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A765D21D62113D10B8C73F85 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8AB0CA56C955F1FA83D30F0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB6529B2B554DA6A6D82CBA9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Acorn ItUITests/Pods-Acorn ItUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBBCE5C8254D744225BE766E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Acorn ItUITests/Pods-Acorn ItUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8B840DCC2800B33E70F0A5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Acorn It/Pods-Acorn It-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6AA54B881E3D596300E53CA2 /* Sources */ = {
@@ -500,10 +691,12 @@
 		};
 		6AA54BBB1E3D596400E53CA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F383A43D1F1390700C65B33 /* Pods-Acorn It.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DGH5JX25RJ;
 				INFOPLIST_FILE = "Acorn It/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.foxgamestudio.Acorn-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -513,10 +706,12 @@
 		};
 		6AA54BBC1E3D596400E53CA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D997C622FFFE38F79E1E5675 /* Pods-Acorn It.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DGH5JX25RJ;
 				INFOPLIST_FILE = "Acorn It/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.foxgamestudio.Acorn-It";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,6 +721,7 @@
 		};
 		6AA54BBE1E3D596400E53CA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8579F969D1034037CAC9AA87 /* Pods-Acorn ItTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -541,6 +737,7 @@
 		};
 		6AA54BBF1E3D596400E53CA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 609019D6788726F6ADFFBF13 /* Pods-Acorn ItTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -556,6 +753,7 @@
 		};
 		6AA54BC11E3D596400E53CA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CDA05B76D761CBEC5E71FE1 /* Pods-Acorn ItUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = DGH5JX25RJ;
@@ -570,6 +768,7 @@
 		};
 		6AA54BC21E3D596400E53CA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F8772AC7EB9F122A930C14D /* Pods-Acorn ItUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = DGH5JX25RJ;

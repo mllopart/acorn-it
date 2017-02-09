@@ -1,0 +1,6 @@
+framework module Pods_Acorn_It {
+  umbrella header "Pods-Acorn It-umbrella.h"
+
+  export *
+  module * { export * }
+}
