@@ -14,6 +14,17 @@ struct ColliderType {
     static let DarkCloudAndCollectables: UInt32 = 2;
 }
 
+struct PlayerStatus {
+    static let statusIdle: UInt32 = 0;
+    static let statusFall: UInt32 = 1;
+    static let statusJump: UInt32 = 2;
+    static let statusRun: UInt32 = 3;
+    static let animationIdle: String = "Animate";
+    static let animationFall: String = "AnimateFall";
+    static let animationJump: String = "AnimateJump";
+    static let animationRun: String = "AnimateRun";
+}
+
 class Player: SKSpriteNode {
     
     private var textureAtlas = SKTextureAtlas();
@@ -29,7 +40,12 @@ class Player: SKSpriteNode {
     private let lTimePerFrameFast = 0.08;
     private var lastY = CGFloat();
     
+    var playerStatus = PlayerStatus.statusIdle;
+    
     func initializePlayerAndAnimations() {
+        
+        //We set the status of the player to Idle status
+        playerStatus = PlayerStatus.statusIdle;
 
         //Loading all the Player animations
         
@@ -59,18 +75,18 @@ class Player: SKSpriteNode {
         animatePlayerActionJump = SKAction.animate(with: playerAnimationJump, timePerFrame: lTimePerFrame, resize: true, restore: false);
         animatePlayerActionRun = SKAction.animate(with: playerAnimationRun, timePerFrame: lTimePerFrameFast, resize: true, restore: false);
         
-        /*self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width-45, height: self.size.height-5))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width-45, height: self.size.height-5))
         self.physicsBody?.affectedByGravity = true;
         self.physicsBody?.allowsRotation = false;
         self.physicsBody?.restitution = 0;
         self.physicsBody?.categoryBitMask = ColliderType.Player;
         self.physicsBody?.collisionBitMask = ColliderType.Cloud;
-        self.physicsBody?.contactTestBitMask = ColliderType.DarkCloudAndCollectables;*/
+        self.physicsBody?.contactTestBitMask = ColliderType.DarkCloudAndCollectables;
         
         lastY = self.position.y;
         
         //We always start with the idle animation
-        self.run(SKAction.repeatForever((animatePlayerActionIdle)) , withKey: "Animate");
+        managePlayerAnimations(action: PlayerStatus.statusIdle)
         
     }
     
@@ -82,15 +98,59 @@ class Player: SKSpriteNode {
             self.xScale = fabs(self.xScale);
         }
         
-        self.run(SKAction.repeatForever((animatePlayerActionRun)) , withKey: "Animate");
+        managePlayerAnimations(action: PlayerStatus.statusRun)
+    }
+    
+    func managePlayerAnimations(action: UInt32) {
+        
+        switch action {
+        case PlayerStatus.statusIdle:
+            self.stopPlayerAnimation()
+            self.run(SKAction.repeatForever((animatePlayerActionIdle)) , withKey: PlayerStatus.animationIdle);
+            self.playerStatus = PlayerStatus.statusIdle
+            break
+        case PlayerStatus.statusFall:
+            self.stopPlayerAnimation()
+            self.run(SKAction.repeatForever((animatePlayerActionFall)) , withKey: PlayerStatus.animationFall);
+            self.playerStatus = PlayerStatus.statusFall
+            break
+        case PlayerStatus.statusJump:
+            self.stopPlayerAnimation()
+            self.run(SKAction.repeatForever((animatePlayerActionJump)) , withKey: PlayerStatus.animationJump);
+            self.playerStatus = PlayerStatus.statusJump
+            break
+        case PlayerStatus.statusRun:
+            self.stopPlayerAnimation()
+            self.run(SKAction.repeatForever((animatePlayerActionRun)) , withKey: PlayerStatus.animationRun);
+            self.playerStatus = PlayerStatus.statusRun
+            break
+        default:
+            self.stopPlayerAnimation()
+            self.run(SKAction.repeatForever((animatePlayerActionIdle)) , withKey: PlayerStatus.animationIdle);
+            self.playerStatus = PlayerStatus.statusIdle
+            break
+            
+        }
+        
+        
     }
     
     func stopPlayerAnimation() {
-        self.removeAction(forKey: "Animate");
-        self.texture = SKTexture(imageNamed:"Player 1");
+        self.removeAction(forKey: PlayerStatus.animationIdle);
+        self.removeAction(forKey: PlayerStatus.animationFall);
+        self.removeAction(forKey: PlayerStatus.animationJump);
+        self.removeAction(forKey: PlayerStatus.animationRun);
         self.size = (self.texture?.size())!;
         
     }
+    
+    func stopPlayerAnimation(animation: String) {
+        self.removeAction(forKey: animation);
+        managePlayerAnimations(action: PlayerStatus.statusIdle)
+        self.size = (self.texture?.size())!;
+        
+    }
+
     
     func movePlayer(moveLeft: Bool) {
         
