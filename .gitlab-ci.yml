@@ -24,7 +24,7 @@ archive_project:
     - master
   artifacts:
     paths:
-    - build/ProjectName.ipa
+    - build/Acorn-It.ipa
   tags:
     - ios_9-2
     - xcode_7-2
