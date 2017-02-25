@@ -24,6 +24,10 @@
 		6AAFAF0B1E4D08F8005B3269 /* GameplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFAF0A1E4D08F8005B3269 /* GameplayController.swift */; };
 		6AAFAF0E1E4D0916005B3269 /* BranchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFAF0C1E4D0916005B3269 /* BranchController.swift */; };
 		6AAFAF0F1E4D0916005B3269 /* CollectablesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAFAF0D1E4D0916005B3269 /* CollectablesController.swift */; };
+		6AC4F8311E50B4A600115C38 /* MainMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6AC4F8301E50B4A600115C38 /* MainMenuScene.sks */; };
+		6AD445471E567FCD0098F92C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD445461E567FCD0098F92C /* MainMenuScene.swift */; };
+		6AD4454C1E568A3A0098F92C /* Berlin Sans FB Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AD4454B1E568A3A0098F92C /* Berlin Sans FB Regular.ttf */; };
+		6AD4454E1E568A510098F92C /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD4454D1E568A510098F92C /* GameKit.framework */; };
 		6AE020411E3EB7C700F02FB7 /* GameplayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6AE020401E3EB7C700F02FB7 /* GameplayScene.sks */; };
 		6AE020431E3EB87C00F02FB7 /* GameplayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE020421E3EB87C00F02FB7 /* GameplayScene.swift */; };
 		6AE020481E3EBF0900F02FB7 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE020451E3EBF0900F02FB7 /* GameData.swift */; };
@@ -73,6 +77,11 @@
 		6AAFAF0A1E4D08F8005B3269 /* GameplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayController.swift; sourceTree = "<group>"; };
 		6AAFAF0C1E4D0916005B3269 /* BranchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BranchController.swift; sourceTree = "<group>"; };
 		6AAFAF0D1E4D0916005B3269 /* CollectablesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectablesController.swift; sourceTree = "<group>"; };
+		6AC4F8301E50B4A600115C38 /* MainMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenuScene.sks; sourceTree = "<group>"; };
+		6AD445461E567FCD0098F92C /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		6AD4454B1E568A3A0098F92C /* Berlin Sans FB Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Berlin Sans FB Regular.ttf"; sourceTree = "<group>"; };
+		6AD4454D1E568A510098F92C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		6AD4454F1E568A5D0098F92C /* Acorn It.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Acorn It.entitlements"; sourceTree = "<group>"; };
 		6AE020401E3EB7C700F02FB7 /* GameplayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameplayScene.sks; sourceTree = "<group>"; };
 		6AE020421E3EB87C00F02FB7 /* GameplayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayScene.swift; sourceTree = "<group>"; };
 		6AE020451E3EBF0900F02FB7 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
@@ -90,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD4454E1E568A510098F92C /* GameKit.framework in Frameworks */,
 				6AAFAF011E4CC24C005B3269 /* AdSupport.framework in Frameworks */,
 				FE31AE48E3620ED3937136DB /* Pods_Acorn_It.framework in Frameworks */,
 			);
@@ -117,6 +127,7 @@
 		0DE7DC4FD8A142D92C5355FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6AD4454D1E568A510098F92C /* GameKit.framework */,
 				6AAFAF001E4CC24C005B3269 /* AdSupport.framework */,
 				C731CD85D21B31201F606930 /* Pods_Acorn_It.framework */,
 				81F6CCD3DEFACB78D3767663 /* Pods_Acorn_ItTests.framework */,
@@ -161,6 +172,7 @@
 		6AA54B8E1E3D596400E53CA2 /* Acorn It */ = {
 			isa = PBXGroup;
 			children = (
+				6AD4454F1E568A5D0098F92C /* Acorn It.entitlements */,
 				6AA54B8F1E3D596400E53CA2 /* AppDelegate.swift */,
 				6AA54B931E3D596400E53CA2 /* Actions.sks */,
 				6AA54B971E3D596400E53CA2 /* GameViewController.swift */,
@@ -191,9 +203,18 @@
 			path = "Acorn ItUITests";
 			sourceTree = "<group>";
 		};
+		6AD4454A1E5689D70098F92C /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6AD4454B1E568A3A0098F92C /* Berlin Sans FB Regular.ttf */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
 		6AE01FFB1E3D5CBB00F02FB7 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6AD4454A1E5689D70098F92C /* Font */,
 			);
 			name = Assets;
 			path = "Acorn It";
@@ -202,6 +223,7 @@
 		6AE0203E1E3EB7A600F02FB7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6AC4F8301E50B4A600115C38 /* MainMenuScene.sks */,
 				6AE020401E3EB7C700F02FB7 /* GameplayScene.sks */,
 			);
 			name = Scenes;
@@ -222,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				6AE020421E3EB87C00F02FB7 /* GameplayScene.swift */,
+				6AD445461E567FCD0098F92C /* MainMenuScene.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -338,6 +361,14 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = DGH5JX25RJ;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					6AA54BA51E3D596400E53CA2 = {
 						CreatedOnToolsVersion = 8.2;
@@ -379,6 +410,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AA54B9B1E3D596400E53CA2 /* Main.storyboard in Resources */,
+				6AD4454C1E568A3A0098F92C /* Berlin Sans FB Regular.ttf in Resources */,
+				6AC4F8311E50B4A600115C38 /* MainMenuScene.sks in Resources */,
 				6AE020411E3EB7C700F02FB7 /* GameplayScene.sks in Resources */,
 				6AA54B9D1E3D596400E53CA2 /* Assets.xcassets in Resources */,
 				6AA54BA01E3D596400E53CA2 /* LaunchScreen.storyboard in Resources */,
@@ -546,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AD445471E567FCD0098F92C /* MainMenuScene.swift in Sources */,
 				6AAFAF0E1E4D0916005B3269 /* BranchController.swift in Sources */,
 				6AE020431E3EB87C00F02FB7 /* GameplayScene.swift in Sources */,
 				6AE020481E3EBF0900F02FB7 /* GameData.swift in Sources */,
@@ -706,6 +740,7 @@
 			baseConfigurationReference = 8F383A43D1F1390700C65B33 /* Pods-Acorn It.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Acorn It/Acorn It.entitlements";
 				DEVELOPMENT_TEAM = DGH5JX25RJ;
 				INFOPLIST_FILE = "Acorn It/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -721,6 +756,7 @@
 			baseConfigurationReference = D997C622FFFE38F79E1E5675 /* Pods-Acorn It.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Acorn It/Acorn It.entitlements";
 				DEVELOPMENT_TEAM = DGH5JX25RJ;
 				INFOPLIST_FILE = "Acorn It/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

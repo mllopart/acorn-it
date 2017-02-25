@@ -178,7 +178,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA;
         }
         
-        if firstBody.node?.name == "Player" && secondBody.node?.name == "Life" {
+        /*if firstBody.node?.name == "Player" && secondBody.node?.name == "Life" {
             
             self.run(SKAction.playSoundFileNamed("Life Sound.wav", waitForCompletion: false));
             GameplayController.instance.incLife();
@@ -191,7 +191,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         } else if firstBody.node?.name == "Player" && secondBody.node?.name == "Dark Cloud" {
             managePlayerDied();
             
-        }
+        }*/
         
     }
     
@@ -253,7 +253,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         
         self.mainCamera?.position.y -= cameraSpeed;
         
-        //skyNode?.moveSprite2(nextSprite: skyNodeNext!, speed: 100, deltaTime: deltaTime, camera: self.mainCamera!);
+        //We update the backgrounds
         skyNode?.moveBG(camera: self.mainCamera!, speed: 20, deltaTime: deltaTime);
         skyNodeNext?.moveBG(camera: self.mainCamera!, speed: 20, deltaTime: deltaTime);
         
