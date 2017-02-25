@@ -32,7 +32,7 @@ class GameplayController {
             
             score = -1;
             coinScore = 0;
-            lifes = 2;
+            lifes = 1;
             
             scoreText?.text = "\(score!)";
             coinText?.text = "x\(coinScore!)";

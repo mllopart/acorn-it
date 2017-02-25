@@ -65,7 +65,7 @@ class GameManager {
         
         let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first as URL!
         
-        return url!.appendingPathComponent("Game Manager Fox").path;
+        return url!.appendingPathComponent("GameManagerFox").path;
     }
     
     

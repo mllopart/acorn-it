@@ -37,5 +37,15 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>TreehouseExtended Regular.ttf</string>
+		<string>Treehouse Regular.ttf</string>
+		<string>Berlin Sans Light Exp Regular.otf</string>
+		<string>Berlin Sans FB Demi Bold.ttf</string>
+		<string>Berlin Sans FB Bold.ttf</string>
+		<string>Berlin Sans Demi Exp Regular.otf</string>
+		<string>Berlin Sans FB Regular.ttf</string>
+	</array>
 </dict>
 </plist>

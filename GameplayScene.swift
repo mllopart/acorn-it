@@ -351,24 +351,14 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         self.scene?.isPaused = true;
         player?.removeFromParent();
         
-        //GameplayController.instance.lifes = GameplayController.instance.lifes! - 1;
-        
-        /*if GameplayController.instance.lifes! >= 0 {
-         
-         GameplayController.instance.lifeText?.text = "x\(GameplayController.instance.lifes!)";
-         Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(GameplayScene.playerDied), userInfo: nil, repeats: false)
-         } else {*/
         //createEndScorePanel();
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(GameplayScene.playerDied), userInfo: nil, repeats: false)
-        //}
-        
-        
     }
     
     func playerDied() {
         
         
-        if GameplayController.instance.lifes! >= 0 {
+        /*if GameplayController.instance.lifes! >= 0 {
             
             GameManager.instance.gameRestartedPlayerDied = true;
             
@@ -376,7 +366,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             scene!.scaleMode = .aspectFill
             self.view?.presentScene(scene!, transition: SKTransition.doorsOpenVertical(withDuration: 1));
             
-        } else {
+        } else {*/
             
             
             if GameManager.instance.getEasyDifficulty() {
@@ -418,11 +408,42 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             GameManager.instance.saveData();
             
             self.scene?.isPaused = false;
-            //let scene = MainMenuScene(fileNamed: "MainMenu");
+            let scene = MainMenuScene(fileNamed: "MainMenuScene");
             scene!.scaleMode = .aspectFill
             self.view?.presentScene(scene!, transition: SKTransition.crossFade(withDuration: 1));
-            
-        }
+        
+    }
+    
+    func createEndScorePanel() {
+        
+        let endScorePanel = SKSpriteNode(imageNamed: "Show Score");
+        let scoreLabel = SKLabelNode(fontNamed: "Blow");
+        let coinLabel = SKLabelNode(fontNamed: "Blow");
+        
+        endScorePanel.anchorPoint = CGPoint(x: 0.5, y: 0.5);
+        endScorePanel.zPosition = 8;
+        endScorePanel.xScale = 1.5;
+        endScorePanel.xScale = 1.5;
+        
+        scoreLabel.fontSize = 40;
+        scoreLabel.zPosition = 7;
+        
+        coinLabel.fontSize = 40;
+        coinLabel.zPosition = 7;
+        
+        endScorePanel.position=CGPoint(x: (self.mainCamera?.frame.size.width)! / 2, y: (self.mainCamera?.frame.size.height)! / 2 );
+        
+        scoreLabel.position = CGPoint(x: endScorePanel.position.x - 60, y:endScorePanel.position.y + 10);
+        coinLabel.position = CGPoint(x: endScorePanel.position.x - 60, y:endScorePanel.position.y - 105);
+        
+        coinLabel.text = String(GameplayController.instance.coinScore!);
+        scoreLabel.text = String(GameplayController.instance.score!);
+        
+        endScorePanel.addChild(scoreLabel);
+        endScorePanel.addChild(coinLabel);
+        
+        mainCamera?.addChild(endScorePanel);
+        
     }
     
 }
