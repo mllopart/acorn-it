@@ -69,9 +69,11 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         player = self.childNode(withName: "Player") as? Player!;
         
         createBackgrounds();
+        getLabels();
+        
         player?.initializePlayerAndAnimations();
         
-        branchControler.arrangeCloudsInScene(scene: self.scene!, distanceBetweenClouds: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialClouds: true, player: player!);
+        branchControler.arrangeBranchesInScene(scene: self.scene!, distanceBetweenClouds: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialClouds: true, player: player!);
         
         cameraDistanceBeforeCreatingNewBranches = (mainCamera?.position.y)!-400;
         
@@ -104,7 +106,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             background?.position = CGPoint(x: 0, y: 0)
             background?.xScale = 1;
             background?.yScale = 1;
-            background?.name = "BG 1";
+            background?.name = "BG";
         }
         
         for background in [distantLeavesNode, distantLeavesNodeNext] {
@@ -114,7 +116,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             background?.position = CGPoint(x: 0, y: 0)
             background?.xScale = 1;
             background?.yScale = 1;
-            background?.name = "BG 2";
+            background?.name = "BG";
         }
         
         for background in [nearbyLeavesNode, nearbyLeavesNodeNext] {
@@ -124,7 +126,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             background?.position = CGPoint(x: 0, y: 0)
             background?.xScale = 1;
             background?.yScale = 1;
-            background?.name = "BG 3";
+            background?.name = "BG";
         }
         
         
@@ -162,7 +164,9 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         
         moveCamera();
         managePlayer();
-        createNewClouds();
+        createNewBranches();
+        
+        player?.setScore();
         
     }
     
@@ -178,21 +182,21 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA;
         }
         
-        /*if firstBody.node?.name == "Player" && secondBody.node?.name == "Life" {
-            
-            self.run(SKAction.playSoundFileNamed("Life Sound.wav", waitForCompletion: false));
-            GameplayController.instance.incLife();
-            secondBody.node?.removeFromParent();
-            
-        } else if firstBody.node?.name == "Player" && secondBody.node?.name == "Coin" {
-            self.run(SKAction.playSoundFileNamed("Coin Sound.wav", waitForCompletion: false));
+        if firstBody.node?.name == "Player" && secondBody.node?.name == "acorn" {
+            //self.run(SKAction.playSoundFileNamed("Coin Sound.wav", waitForCompletion: false));
             GameplayController.instance.incCoin();
             secondBody.node?.removeFromParent();
-        } else if firstBody.node?.name == "Player" && secondBody.node?.name == "Dark Cloud" {
-            managePlayerDied();
-            
-        }*/
+        } else if firstBody.node?.name == "Player" && secondBody.node?.name == "rottenbranch" {
+            //After 0.5 seconds we remove the rottne branch
+            let remove = SKAction.run({()in self.destroyRottenBranch(rBranch: secondBody.node as! SKSpriteNode)})
+            let wait = SKAction.wait(forDuration: 0.5)
+            self.run(SKAction.sequence([wait, remove]))
+        }
         
+    }
+    
+    @objc private func destroyRottenBranch (rBranch: SKSpriteNode) {
+        rBranch.removeFromParent();
     }
     
     
@@ -267,23 +271,20 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func setCameraSpeed() {
-        /*if GameManager.instance.getEasyDifficulty() {
-         acceleration = 0.001;
-         cameraSpeed = 1.5;
-         maxSpeed = 4;
-         } else if GameManager.instance.getMediumDifficulty() {
-         acceleration = 0.002;
-         cameraSpeed = 2.0;
-         maxSpeed = 6;
-         } else if GameManager.instance.getHardDifficulty() {
-         acceleration = 0.003;
-         cameraSpeed = 2.5;
-         maxSpeed = 8;
-         }*/
+        if GameManager.instance.getEasyDifficulty() {
+            acceleration = 0.001;
+            cameraSpeed = 1.5;
+            maxSpeed = 4;
+        } else if GameManager.instance.getMediumDifficulty() {
+            acceleration = 0.002;
+            cameraSpeed = 2.0;
+            maxSpeed = 6;
+        } else if GameManager.instance.getHardDifficulty() {
+            acceleration = 0.003;
+            cameraSpeed = 2.5;
+            maxSpeed = 8;
+        }
         
-        acceleration = 0.001;
-        cameraSpeed = 1.5;
-        maxSpeed = 4;
     }
     
     func managePlayer () {
@@ -317,13 +318,13 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func createNewClouds() {
+    func createNewBranches() {
         if cameraDistanceBeforeCreatingNewBranches > (mainCamera?.position.y)! {
             
             cameraDistanceBeforeCreatingNewBranches = (mainCamera?.position.y)!-400;
             
             //we create new clouds in the scene
-            branchControler.arrangeCloudsInScene(scene: self.scene!, distanceBetweenClouds: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialClouds: false, player:player!);
+            branchControler.arrangeBranchesInScene(scene: self.scene!, distanceBetweenClouds: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialClouds: false, player:player!);
             
             checkForChildsOutOffScreen();
         }
@@ -334,9 +335,9 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         for child in children {
             if child.position.y > (mainCamera?.position.y)! + (self.scene?.size.height)! {
                 
-                let childName = child.name?.components(separatedBy: " ");
+                let childName = child.name?.components(separatedBy: " ");                
                 
-                if childName![0] != "BG" {
+                if childName![0]  == "branch" || childName![0]  == "rottenbranch" || childName![0]  == "acorn" || childName![0]  == "NONE"  {
                     print("The child removed is \(child.name!)");
                     child.removeFromParent();
                 }
@@ -344,6 +345,10 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+    }
+    
+    func getLabels() {
+        GameplayController.instance.scoreText = self.mainCamera?.childNode(withName: "scoreLabel") as! SKLabelNode?;
     }
     
     private func managePlayerDied (){
@@ -358,59 +363,48 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     func playerDied() {
         
         
-        /*if GameplayController.instance.lifes! >= 0 {
+        if GameManager.instance.getEasyDifficulty() {
+            let highscore = GameManager.instance.getEasyDifficultyScore();
+            let coinscore = GameManager.instance.getEasyDifficultyScoreCoins();
             
-            GameManager.instance.gameRestartedPlayerDied = true;
-            
-            let scene = GameplayScene(fileNamed: "GameplayScene");
-            scene!.scaleMode = .aspectFill
-            self.view?.presentScene(scene!, transition: SKTransition.doorsOpenVertical(withDuration: 1));
-            
-        } else {*/
-            
-            
-            if GameManager.instance.getEasyDifficulty() {
-                let highscore = GameManager.instance.getEasyDifficultyScore();
-                let coinscore = GameManager.instance.getEasyDifficultyScoreCoins();
-                
-                if highscore < GameplayController.instance.score! {
-                    GameManager.instance.setEasyDifficultyScore(easyDifficultyScore: GameplayController.instance.score!);
-                }
-                
-                if coinscore < GameplayController.instance.coinScore! {
-                    GameManager.instance.setEasyDifficultyCoinScore(easyDifficultyCoinScore: GameplayController.instance.coinScore!);
-                }
-            } else if GameManager.instance.getMediumDifficulty() {
-                let highscore = GameManager.instance.getMediumDifficultyScore();
-                let coinscore = GameManager.instance.getMediumDifficultyScoreCoins();
-                
-                if highscore < GameplayController.instance.score! {
-                    GameManager.instance.setMediumDifficultyScore(mediumDifficultyScore: GameplayController.instance.score!);
-                }
-                
-                if coinscore < GameplayController.instance.coinScore! {
-                    GameManager.instance.setMediumDifficultyCoinScore(mediumDifficultyCoinScore: GameplayController.instance.coinScore!);
-                }
-                
-            } else if GameManager.instance.getHardDifficulty() {
-                let highscore = GameManager.instance.getHardDifficultyScore();
-                let coinscore = GameManager.instance.getHardDifficultyScoreCoins();
-                
-                if highscore < GameplayController.instance.score! {
-                    GameManager.instance.setHardDifficultyScore(hardDifficultyScore: GameplayController.instance.score!);
-                }
-                
-                if coinscore < GameplayController.instance.coinScore! {
-                    GameManager.instance.setHardDifficultyCoinScore(hardDifficultyCoinScore: GameplayController.instance.coinScore!);
-                }
+            if highscore < GameplayController.instance.score! {
+                GameManager.instance.setEasyDifficultyScore(easyDifficultyScore: GameplayController.instance.score!);
             }
             
-            GameManager.instance.saveData();
+            if coinscore < GameplayController.instance.coinScore! {
+                GameManager.instance.setEasyDifficultyCoinScore(easyDifficultyCoinScore: GameplayController.instance.coinScore!);
+            }
+        } else if GameManager.instance.getMediumDifficulty() {
+            let highscore = GameManager.instance.getMediumDifficultyScore();
+            let coinscore = GameManager.instance.getMediumDifficultyScoreCoins();
             
-            self.scene?.isPaused = false;
-            let scene = MainMenuScene(fileNamed: "MainMenuScene");
-            scene!.scaleMode = .aspectFill
-            self.view?.presentScene(scene!, transition: SKTransition.crossFade(withDuration: 1));
+            if highscore < GameplayController.instance.score! {
+                GameManager.instance.setMediumDifficultyScore(mediumDifficultyScore: GameplayController.instance.score!);
+            }
+            
+            if coinscore < GameplayController.instance.coinScore! {
+                GameManager.instance.setMediumDifficultyCoinScore(mediumDifficultyCoinScore: GameplayController.instance.coinScore!);
+            }
+            
+        } else if GameManager.instance.getHardDifficulty() {
+            let highscore = GameManager.instance.getHardDifficultyScore();
+            let coinscore = GameManager.instance.getHardDifficultyScoreCoins();
+            
+            if highscore < GameplayController.instance.score! {
+                GameManager.instance.setHardDifficultyScore(hardDifficultyScore: GameplayController.instance.score!);
+            }
+            
+            if coinscore < GameplayController.instance.coinScore! {
+                GameManager.instance.setHardDifficultyCoinScore(hardDifficultyCoinScore: GameplayController.instance.coinScore!);
+            }
+        }
+        
+        GameManager.instance.saveData();
+        
+        self.scene?.isPaused = false;
+        let scene = MainMenuScene(fileNamed: "MainMenuScene");
+        scene!.scaleMode = .aspectFill
+        self.view?.presentScene(scene!, transition: SKTransition.crossFade(withDuration: 1));
         
     }
     

@@ -10,8 +10,9 @@ import SpriteKit
 
 struct ColliderType {
     static let Player: UInt32 = 0;
-    static let Cloud: UInt32 = 1;
-    static let DarkCloudAndCollectables: UInt32 = 2;
+    static let Branch: UInt32 = 1;
+    static let Collectables: UInt32 = 2;
+    static let RottenBranch: UInt32 = 3;
 }
 
 struct PlayerStatus {
@@ -80,8 +81,8 @@ class Player: SKSpriteNode {
         self.physicsBody?.allowsRotation = false;
         self.physicsBody?.restitution = 0;
         self.physicsBody?.categoryBitMask = ColliderType.Player;
-        self.physicsBody?.collisionBitMask = ColliderType.Cloud;
-        self.physicsBody?.contactTestBitMask = ColliderType.DarkCloudAndCollectables;
+        self.physicsBody?.collisionBitMask = ColliderType.Branch | ColliderType.RottenBranch;
+        self.physicsBody?.contactTestBitMask = ColliderType.Collectables;
         
         lastY = self.position.y;
         

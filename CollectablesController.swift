@@ -13,16 +13,19 @@ class CollectablesController {
     func getCollectable() -> SKSpriteNode {
         
         var collectable = SKSpriteNode();
+        collectable.name = "NONE";
         
-        if Int(randomBetweenNumbers(firstNum: 0, secondNum: 7)) <= 4 {
+        if Int(randomBetweenNumbers(firstNum: 0, secondNum: 7)) >= 4 {
             
             collectable = SKSpriteNode(imageNamed: "acorn");
             collectable.name = "acorn";
             collectable.physicsBody = SKPhysicsBody(circleOfRadius: collectable.size.height/2);
+            
         }
         
+        collectable.physicsBody?.restitution = 0;
         collectable.physicsBody?.affectedByGravity = false;
-        collectable.physicsBody?.categoryBitMask = ColliderType.DarkCloudAndCollectables;
+        collectable.physicsBody?.categoryBitMask = ColliderType.Collectables;
         collectable.physicsBody?.collisionBitMask = ColliderType.Player;
         collectable.zPosition = 2;
         

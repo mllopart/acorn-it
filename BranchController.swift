@@ -45,15 +45,15 @@ class BranchController {
             let rottenBranch = SKSpriteNode(imageNamed: "branch2");
             
             
-            branch1.name = "branch1";
+            branch1.name = "branch";
             branch1.xScale = 1;
             branch1.yScale = 1;
             
-            branch2.name = "branch2";
+            branch2.name = "branch";
             branch2.xScale = 1;
             branch2.yScale = 1;
             
-            branch3.name = "branch3";
+            branch3.name = "branch";
             branch3.xScale = 1;
             branch3.yScale = 1;
             
@@ -64,25 +64,25 @@ class BranchController {
             branch1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: branch1.size.width-6, height: branch1.size.height-7))
             branch1.physicsBody?.affectedByGravity = false;
             branch1.physicsBody?.restitution = 0;
-            branch1.physicsBody?.categoryBitMask = ColliderType.Cloud;
+            branch1.physicsBody?.categoryBitMask = ColliderType.Branch;
             branch1.physicsBody?.collisionBitMask = ColliderType.Player;
             
             branch2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: branch2.size.width-6, height: branch2.size.height-7))
             branch2.physicsBody?.affectedByGravity = false;
             branch2.physicsBody?.restitution = 0;
-            branch2.physicsBody?.categoryBitMask = ColliderType.Cloud;
+            branch2.physicsBody?.categoryBitMask = ColliderType.Branch;
             branch2.physicsBody?.collisionBitMask = ColliderType.Player;
             
             branch3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: branch3.size.width-6, height: branch3.size.height-7))
             branch3.physicsBody?.affectedByGravity = false;
             branch3.physicsBody?.restitution = 0;
-            branch3.physicsBody?.categoryBitMask = ColliderType.Cloud;
+            branch3.physicsBody?.categoryBitMask = ColliderType.Branch;
             branch3.physicsBody?.collisionBitMask = ColliderType.Player;
             
             rottenBranch.physicsBody = SKPhysicsBody(rectangleOf: rottenBranch.size)
             rottenBranch.physicsBody?.affectedByGravity = false;
             rottenBranch.physicsBody?.restitution = 0;
-            rottenBranch.physicsBody?.categoryBitMask = ColliderType.DarkCloudAndCollectables;
+            rottenBranch.physicsBody?.categoryBitMask = ColliderType.RottenBranch;
             rottenBranch.physicsBody?.collisionBitMask = ColliderType.Player;
             
             branches.append(branch1);
@@ -96,7 +96,7 @@ class BranchController {
         return branches;
     }
     
-    func arrangeCloudsInScene(scene:SKScene, distanceBetweenClouds: CGFloat, center: CGFloat, minX: CGFloat, maxX: CGFloat, initialClouds: Bool, player:Player) {
+    func arrangeBranchesInScene(scene:SKScene, distanceBetweenClouds: CGFloat, center: CGFloat, minX: CGFloat, maxX: CGFloat, initialClouds: Bool, player:Player) {
         
         var clouds = createBranches();
         var positionY = CGFloat();
