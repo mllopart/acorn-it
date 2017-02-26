@@ -12,7 +12,7 @@ class BranchController {
     
     let collectableController = CollectablesController();
     
-    var lastCloudPositionY = CGFloat();
+    var lastBranchPositionY = CGFloat();
     
     func shuffle( cloudsArray: [SKSpriteNode]) -> [SKSpriteNode] {
         
@@ -46,11 +46,11 @@ class BranchController {
             
             
             branch1.name = "branch";
-            branch1.xScale = 1;
+            branch1.xScale = 1.2;
             branch1.yScale = 1;
             
             branch2.name = "branch";
-            branch2.xScale = 1;
+            branch2.xScale = 1.4;
             branch2.yScale = 1;
             
             branch3.name = "branch";
@@ -58,7 +58,7 @@ class BranchController {
             branch3.yScale = 1;
             
             rottenBranch.name = "rottenbranch";
-            rottenBranch.xScale = 1;
+            rottenBranch.xScale = 1.2;
             rottenBranch.yScale = 1;
             
             branch1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: branch1.size.width-6, height: branch1.size.height-7))
@@ -96,65 +96,63 @@ class BranchController {
         return branches;
     }
     
-    func arrangeBranchesInScene(scene:SKScene, distanceBetweenClouds: CGFloat, center: CGFloat, minX: CGFloat, maxX: CGFloat, initialClouds: Bool, player:Player) {
+    func arrangeBranchesInScene(scene:SKScene, distanceBetweenBranches: CGFloat, center: CGFloat, minX: CGFloat, maxX: CGFloat, initialBranches: Bool, player:Player) {
         
-        var clouds = createBranches();
+        var branches = createBranches();
         var positionY = CGFloat();
         
-        if initialClouds {
+        if initialBranches {
             
-            while (clouds[0].name == "rottenbranch") {
-                //shuffle the cloud array
-                clouds = shuffle(cloudsArray: clouds);
+            while (branches[0].name == "rottenbranch") {
+                //shuffle the branch array
+                branches = shuffle(cloudsArray: branches);
             }
             
             
             positionY = center - 100;
             
         } else {
-            positionY = lastCloudPositionY;
+            positionY = lastBranchPositionY;
         }
         
         var random = 0;
         
-        for index in 0...clouds.count - 1 {
+        for index in 0...branches.count - 1 {
             
             
             var  randomX = CGFloat();
             
             if random == 0 {
-                randomX = randomBetweenNumbers(firstNum: center + 90, secondNum: maxX);
+                randomX = randomBetweenNumbers(firstNum: center + 20, secondNum: maxX);
                 random = 1;
             } else if random == 1 {
-                randomX = randomBetweenNumbers(firstNum: center - 90, secondNum: minX);
+                randomX = randomBetweenNumbers(firstNum: center - 20, secondNum: minX);
                 random = 0;
             }
             
-            clouds[index].position = CGPoint(x:randomX, y:positionY);
-            clouds[index].zPosition = 3;
+            branches[index].position = CGPoint(x:randomX, y:positionY);
+            branches[index].zPosition = 3;
             
-            if !initialClouds {
+            if !initialBranches {
                 if Int (randomBetweenNumbers(firstNum: 0, secondNum: 7)) >= 3 {
-                    if clouds[index].name != "rottenbranch" {
+                    if branches[index].name != "rottenbranch" {
                         let collectable = collectableController.getCollectable();
-                        collectable.position = CGPoint(x:clouds[index].position.x, y:clouds[index].position.y + 45)
+                        collectable.position = CGPoint(x:branches[index].position.x, y:branches[index].position.y + 45)
                         scene.addChild(collectable);
                     }
                 }
             }
             
-            scene.addChild(clouds[index]);
-            positionY -= distanceBetweenClouds;
-            lastCloudPositionY = positionY;
+            scene.addChild(branches[index]);
+            positionY -= distanceBetweenBranches;
+            lastBranchPositionY = positionY;
             
             
         }
         
-        if initialClouds {
-            player.position = CGPoint(x: clouds[0].position.x, y: clouds[0].position.y + 9);
+        if initialBranches {
+            player.position = CGPoint(x: branches[0].position.x, y: branches[0].position.y + 9);
         }
-        
-        
         
         
     }

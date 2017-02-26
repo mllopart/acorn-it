@@ -73,7 +73,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         
         player?.initializePlayerAndAnimations();
         
-        branchControler.arrangeBranchesInScene(scene: self.scene!, distanceBetweenClouds: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialClouds: true, player: player!);
+        branchControler.arrangeBranchesInScene(scene: self.scene!, distanceBetweenBranches: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialBranches: true, player: player!);
         
         cameraDistanceBeforeCreatingNewBranches = (mainCamera?.position.y)!-400;
         
@@ -170,7 +170,9 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    //when contact begin
     func didBegin(_ contact: SKPhysicsContact) {
+        
         var firstBody = SKPhysicsBody();
         var secondBody = SKPhysicsBody();
         
@@ -184,8 +186,8 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.node?.name == "Player" && secondBody.node?.name == "acorn" {
             //self.run(SKAction.playSoundFileNamed("Coin Sound.wav", waitForCompletion: false));
-            GameplayController.instance.incCoin();
             secondBody.node?.removeFromParent();
+            GameplayController.instance.incCoin();            
         } else if firstBody.node?.name == "Player" && secondBody.node?.name == "rottenbranch" {
             //After 0.5 seconds we remove the rottne branch
             let remove = SKAction.run({()in self.destroyRottenBranch(rBranch: secondBody.node as! SKSpriteNode)})
@@ -195,7 +197,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    @objc private func destroyRottenBranch (rBranch: SKSpriteNode) {
+    private func destroyRottenBranch (rBranch: SKSpriteNode) {
         rBranch.removeFromParent();
     }
     
@@ -271,6 +273,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func setCameraSpeed() {
+        
         if GameManager.instance.getEasyDifficulty() {
             acceleration = 0.001;
             cameraSpeed = 1.5;
@@ -284,6 +287,10 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             cameraSpeed = 2.5;
             maxSpeed = 8;
         }
+
+        debugPrint("acceleration: \(acceleration)")
+        debugPrint("cameraSpeed: \(cameraSpeed)")
+        debugPrint("maxSpeed: \(maxSpeed)")
         
     }
     
@@ -324,7 +331,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
             cameraDistanceBeforeCreatingNewBranches = (mainCamera?.position.y)!-400;
             
             //we create new clouds in the scene
-            branchControler.arrangeBranchesInScene(scene: self.scene!, distanceBetweenClouds: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialClouds: false, player:player!);
+            branchControler.arrangeBranchesInScene(scene: self.scene!, distanceBetweenBranches: distanceBetweenBranches, center: centerScreen!, minX: minX, maxX: maxX, initialBranches: false, player:player!);
             
             checkForChildsOutOffScreen();
         }
@@ -338,7 +345,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
                 let childName = child.name?.components(separatedBy: " ");                
                 
                 if childName![0]  == "branch" || childName![0]  == "rottenbranch" || childName![0]  == "acorn" || childName![0]  == "NONE"  {
-                    print("The child removed is \(child.name!)");
+                    debugPrint("The child removed is \(child.name!)");
                     child.removeFromParent();
                 }
                 

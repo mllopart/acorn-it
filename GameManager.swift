@@ -35,8 +35,8 @@ class GameManager {
             gameData?.setHardDifficultyScore(hardDifficultyScore: 0);
             gameData?.setHardDifficultyCoinScore(hardDifficultyCoinScore: 0);
             
-            gameData?.setEasyDifficulty(easyDifficulty: false);
-            gameData?.setMediumDifficulty(mediumDifficulty: true);
+            gameData?.setEasyDifficulty(easyDifficulty: true);
+            gameData?.setMediumDifficulty(mediumDifficulty: false);
             gameData?.setHardDifficulty(hardDifficulty: false);
             
             gameData?.setIsMusicOn(isMusicOn: true);
