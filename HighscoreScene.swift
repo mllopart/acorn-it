@@ -45,7 +45,7 @@ class HighscoreScene: SKScene {
             let nodeAtLocation = self.atPoint(location);
             
             if nodeAtLocation.name == "Back Button" {
-                let scene = MainMenuScene(fileNamed: "MainMenu");
+                let scene = MainMenuScene(fileNamed: "MainMenuScene");
                 scene!.scaleMode = .aspectFill
                 self.view?.presentScene(scene!, transition: SKTransition.crossFade(withDuration: 1));
             }

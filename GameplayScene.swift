@@ -363,7 +363,7 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
         self.scene?.isPaused = true;
         player?.removeFromParent();
         
-        //createEndScorePanel();
+        createEndScorePanel();
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(GameplayScene.playerDied), userInfo: nil, repeats: false)
     }
     
@@ -417,14 +417,16 @@ class GameplayScene: SKScene, SKPhysicsContactDelegate {
     
     func createEndScorePanel() {
         
-        let endScorePanel = SKSpriteNode(imageNamed: "Show Score");
-        let scoreLabel = SKLabelNode(fontNamed: "Blow");
-        let coinLabel = SKLabelNode(fontNamed: "Blow");
+        let endScorePanel = SKSpriteNode(imageNamed: "backgroundRetry");
+        let scoreLabel = SKLabelNode(fontNamed: "Berlin Sans Demi Exp");
+        let coinLabel = SKLabelNode(fontNamed: "Berlin Sans Demi Exp");
         
         endScorePanel.anchorPoint = CGPoint(x: 0.5, y: 0.5);
-        endScorePanel.zPosition = 8;
+        endScorePanel.zPosition = 200;
         endScorePanel.xScale = 1.5;
         endScorePanel.xScale = 1.5;
+        endScorePanel.size = CGSize(width: 300, height: 196.5);
+        endScorePanel.position = CGPoint(x: 0, y: 0);
         
         scoreLabel.fontSize = 40;
         scoreLabel.zPosition = 7;

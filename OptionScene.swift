@@ -15,6 +15,9 @@ class OptionScene: SKScene {
     private var mediumBtn: SKSpriteNode?;
     private var hardBtn: SKSpriteNode?;
     private var sign: SKSpriteNode?;
+    private var empty1: SKSpriteNode?;
+    private var empty2: SKSpriteNode?;
+    private var background: SKSpriteNode?;
     
     override func didMove(to view: SKView) {
         initializeVariables();
@@ -22,24 +25,37 @@ class OptionScene: SKScene {
     }
     
     func initializeVariables() {
-        easyBtn = self.childNode(withName: "Easy Button") as? SKSpriteNode!;
-        mediumBtn = self.childNode(withName: "Medium Button") as? SKSpriteNode!;
-        hardBtn = self.childNode(withName: "Hard Button") as? SKSpriteNode!;
-        sign = self.childNode(withName: "Sign") as? SKSpriteNode!;
+        background = self.childNode(withName: "optionsBackground") as? SKSpriteNode!;
+        easyBtn = background?.childNode(withName: "Easy Button") as? SKSpriteNode!;
+        mediumBtn = background?.childNode(withName: "Medium Button") as? SKSpriteNode!;
+        hardBtn = background?.childNode(withName: "Hard Button") as? SKSpriteNode!;
+        sign = background?.childNode(withName: "Sign") as? SKSpriteNode!;
+        empty1 = background?.childNode(withName: "empty1") as? SKSpriteNode!;
+        empty2 = background?.childNode(withName: "empty2") as? SKSpriteNode!;
     }
     
     private func setSign() {
         if GameManager.instance.getEasyDifficulty() {
             sign?.position.y = (easyBtn?.position.y)!;
+            empty1?.position.y = (mediumBtn?.position.y)!;
+            empty2?.position.y = (hardBtn?.position.y)!;
         }
         
         if GameManager.instance.getMediumDifficulty() {
             sign?.position.y = (mediumBtn?.position.y)!;
+            empty1?.position.y = (easyBtn?.position.y)!;
+            empty2?.position.y = (hardBtn?.position.y)!;
         }
         
         if GameManager.instance.getHardDifficulty() {
             sign?.position.y = (hardBtn?.position.y)!;
+            empty1?.position.y = (easyBtn?.position.y)!;
+            empty2?.position.y = (mediumBtn?.position.y)!;
         }
+        
+        sign?.zPosition = 10;
+        empty1?.zPosition = 10;
+        empty2?.zPosition = 10;
 
     }
     
@@ -76,19 +92,17 @@ class OptionScene: SKScene {
             
             if nodeAtLocation == easyBtn {
                 setDifficulty(difficulty: "easy");
-                sign?.position.y = (easyBtn?.position.y)!;
+                setSign();
             } else if nodeAtLocation == mediumBtn {
                 setDifficulty(difficulty: "medium");
-                sign?.position.y = (mediumBtn?.position.y)!;
+                setSign();
             } else if nodeAtLocation == hardBtn {
                 setDifficulty(difficulty: "hard");
-                sign?.position.y = (hardBtn?.position.y)!;
-            }
-            
-            sign?.zPosition = 4;
+                setSign();
+            }          
             
             if nodeAtLocation.name == "Back Button" {
-                let scene = MainMenuScene(fileNamed: "MainMenu");
+                let scene = MainMenuScene(fileNamed: "MainMenuScene");
                 scene!.scaleMode = .aspectFill
                 self.view?.presentScene(scene!, transition: SKTransition.crossFade(withDuration: 1));
             }
