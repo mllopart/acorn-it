@@ -33,7 +33,7 @@ class AudioManager {
         }
         
         if err != nil {
-            print("We have a problem in BG music: \(err)");
+            print("We have a problem in BG music: \(String(describing: err))");
         }
         
     }
